@@ -1,0 +1,28 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+file_path = 'your_file.xlsx'
+df = pd.read_excel()
+max_marks = 15
+df['Percentage'] = (df['Marks'] / max_marks) * 100
+greater_75 = df[df['Percentage'] > 75]
+between_60_75 = df[(df['Percentage'] >= 60) & (df['Percentage'] <= 75)]
+less_60 = df[df['Percentage'] < 60]
+print("\nStudents with > 75%:")
+print(greater_75[['Name', 'Percentage']])
+print("\nStudents with 60%-75%:")
+print(between_60_75[['Name', 'Percentage']])
+print("\nStudents with < 60%:")
+print(less_60[['Name', 'Percentage']])
+plt.figure(figsize=(8,6))
+plt.hist(df['Percentage'], bins=range(0, 101, 5), edgecolor='black', color='blue')
+plt.xlabel('Percentage')
+plt.ylabel('Number of Students')
+plt.title('Histogram Plot')
+plt.show()
+plt.figure(figsize=(8,6))
+plt.scatter(df['Name'], df['Percentage'], color='blue', edgecolor='black')
+plt.xlabel('Students')
+plt.ylabel('Percentage')
+plt.title('Scatter Plot')
+plt.xticks(rotation=45)
+plt.show()
